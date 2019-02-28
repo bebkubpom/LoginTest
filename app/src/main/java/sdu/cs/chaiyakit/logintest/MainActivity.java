@@ -1,5 +1,6 @@
 package sdu.cs.chaiyakit.logintest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,14 +36,19 @@ public class MainActivity extends AppCompatActivity {
                 //Check ค่าว่าง
                 if ((nameString.length()== 0)||(userString.length()==0)|| (passString.length()==0)){
                     Toast.makeText(getApplicationContext(), "กรุณากรอกข้อมูลให้ครบทุกช่อง", Toast.LENGTH_SHORT).show();
-                }
+                }else{
                 //Check username & password
                 if ((userString.equals("admin")) && (passString.equals("1234"))) {
                     Toast.makeText(getApplicationContext(), "Login Success Great!", Toast.LENGTH_SHORT).show();
+
+                    //ส่งข้อมูลไปหน้า Menu
+                    Intent menuIntent = new Intent(MainActivity.this, MenuActivity.class);
+                    menuIntent.putExtra("Name", nameString);
+                    startActivity(menuIntent);
                 } else {
                     Toast.makeText(getApplicationContext(),"Fail T.T ",Toast.LENGTH_SHORT).show();
                 }
-            }
+            }}
         });//end ของ setOnClickListener
 
     }//end oncreate
